@@ -1,0 +1,15 @@
+digraph mygraph {
+  node [shape=box];
+  "//main:run_bin"
+  "//main:run_bin" -> "//main:main.cc\n//main:func"
+  "//main:run_bin" -> "//comp:components"
+  "//main:run_bin" -> "//work:worker"
+  "//work:worker"
+  "//work:worker" -> "//work:worker.cc\n//work:worker.h"
+  "//work:worker" -> "//comp:components"
+  "//work:worker.cc\n//work:worker.h"
+  "//comp:components"
+  "//comp:components" -> "//comp:link_list.h\n//comp:common.h\n//comp:base.h"
+  "//main:main.cc\n//main:func"
+  "//comp:link_list.h\n//comp:common.h\n//comp:base.h"
+}
