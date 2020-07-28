@@ -5,36 +5,43 @@ namespace nemo {
   namespace leetcode{
 
 int run_link_list(){
+  std::cout << " link_list : " << std::endl;
   // build list
   std::vector<int> vec = {1,3,8,2,5};
   show_vec(vec);
   LinkList<int> link(vec);
   // show
+  std::cout << " show : " << std::endl;
   Node<int> *head = link.GetHead();
   link.Display(head);
   // reverse
+  std::cout << " reverse : " << std::endl;
   head = link.Reverse(head);
   link.Display(head);
   // taik `K`
+  std::cout << " tailK : " << std::endl;
   int k = 2;
   Node<int>* tailk = link.TailK(head, k);
   if (tailk == nullptr) {
     std::cout << "nullptr: " << k << std::endl;
   } else {
-    std::cout << "tail K: "<< tailk->val << std::endl;
+    std::cout << "K= "<< k << ", val=" << tailk->val << std::endl;
   }
+  std::cout << "-------------" << std::endl;
   return 0;
 }
 
 
 int run_priority_heap() {
+  std::cout << ("priority_heap") << std::endl;
   // build list
   std::vector<int> vec = {1,3,8,2,2,5};
   show_vec(vec);
   PriorityHeap<int> ph(vec);
   std::vector<int> v;
-  // ph.sort(v);
+  ph.sort(v);
   show_vec(v);
+  std::cout << "end ph" << std::endl;
   // push, pop
   PriorityHeap<int> pq;
   pq.push(4);
@@ -47,6 +54,7 @@ int run_priority_heap() {
   /*
   */
 
+  std::cout << "-------------" << std::endl;
   return 0;
 }
 
@@ -60,6 +68,7 @@ int run_sorter() {
   // st.quick_sort(vec);
   st.merge_sort(vec);
 
+  std::cout << "-------------" << std::endl;
   return 0;
 }
 

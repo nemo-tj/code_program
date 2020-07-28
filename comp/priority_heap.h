@@ -15,8 +15,7 @@ namespace nemo {
 
      PriorityHeap(const std::vector<T>& ve) {
        if (ve.size()  > capacity) {
-         capacity = std::max(int(1), capacity);
-         capacity = (capacity > 0)? (capacity << 1) : (1);
+         capacity = 2 * ve.size();
          vec.resize(capacity);
        }
        for (int i = 0; i < ve.size(); ++i) {
@@ -29,14 +28,14 @@ namespace nemo {
      }
 
      void sort(std::vector<T> &result) {
-       info("sort start");
+       // info("sort start");
        result.clear();
        result.reserve(size);
        while (!empty()) {
          result.push_back(top());
          pop();
        }
-       info("sort end");
+       // info("sort end");
      }
      
      void pop() {
