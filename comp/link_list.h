@@ -21,7 +21,8 @@ namespace nemo {
       void Display();
     public:
       Node<T>* Reverse(Node<T> *head);
-      Node<T> *TailK(Node<T> *head, int k);
+      Node<T>* Reverser(Node<T> *head);
+      Node<T>* TailK(Node<T> *head, int k);
     
     private:
       Node<T> *head;
@@ -88,6 +89,17 @@ Node<T>* LinkList<T>::Reverse(Node<T> *head) {
   }
   return phead;
 }
+
+template <class T>
+Node<T>* LinkList<T>::Reverser(Node<T> *head) {
+  if (head == nullptr) return head;
+  if (head->next == nullptr) return head;
+  Node<T>* q = head->next;
+  Node<T>* r = Reverser(q);
+  q->next = head;
+  return r;
+}
+
 
 template <class T>
 Node<T> *LinkList<T>::TailK(Node<T> *head, int k) {

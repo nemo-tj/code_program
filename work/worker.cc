@@ -4,22 +4,25 @@
 namespace nemo {
   namespace leetcode{
 
-int run_link_list(){
-  std::cout << " link_list : " << std::endl;
+int Runner::run_link_list(){
+  std::cout << "link_list : " << std::endl;
   // build list
   std::vector<int> vec = {1,3,8,2,5};
   show_vec(vec);
   LinkList<int> link(vec);
   // show
-  std::cout << " show : " << std::endl;
+  std::cout << "show : " << std::endl;
   Node<int> *head = link.GetHead();
   link.Display(head);
   // reverse
-  std::cout << " reverse : " << std::endl;
-  head = link.Reverse(head);
+  std::cout << "reverse : " << std::endl;
+  // head = link.Reverse(head);
+  Node<int> *phead = link.Reverser(head);
+  head->next = nullptr;
+  head = phead;
   link.Display(head);
   // taik `K`
-  std::cout << " tailK : " << std::endl;
+  std::cout << "tailK : " << std::endl;
   int k = 2;
   Node<int>* tailk = link.TailK(head, k);
   if (tailk == nullptr) {
@@ -32,7 +35,7 @@ int run_link_list(){
 }
 
 
-int run_priority_heap() {
+int Runner::run_priority_heap() {
   std::cout << ("priority_heap") << std::endl;
   // build list
   std::vector<int> vec = {1,3,8,2,2,5};
@@ -58,7 +61,7 @@ int run_priority_heap() {
   return 0;
 }
 
-int run_sorter() {
+int Runner::run_sorter() {
   std::cout << "sorter ..." << std::endl;
 
   Sorter<int> st;
