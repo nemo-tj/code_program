@@ -1,5 +1,5 @@
 #include "work/worker.h"
-#include "comp/base.h"
+#include "component/base.h"
 
 namespace nemo {
   namespace leetcode{

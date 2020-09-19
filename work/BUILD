@@ -4,7 +4,7 @@ cc_library(
     name = "worker",
     srcs = glob(["*.cc"]),
     hdrs = glob(["*.h"]),
-    deps = ["//comp:components",
+    deps = ["//component:components",
             ],
     visibility = ["//main:__pkg__"],
 )

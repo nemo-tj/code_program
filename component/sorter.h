@@ -1,5 +1,5 @@
 #pragma once
-#include "comp/common.h"
+#include "component/common.h"
 
 namespace nemo {
   template <class T>

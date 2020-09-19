@@ -13,7 +13,7 @@ cc_binary(
     srcs = ["main.cc"],
     deps = [
         ":func",
-        "//comp:components",
+        "//component:components",
         "//work:worker",
     ],
 )

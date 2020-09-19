@@ -1,4 +1,4 @@
-#include "comp/sorter.h"
+#include "component/sorter.h"
 
 namespace nemo {
 

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "comp/common.h"
+#include "component/common.h"
 
 namespace nemo {
   namespace leetcode {
