@@ -13,8 +13,9 @@ namespace nemo {
           return runner;
         }
         int run_link_list();
-        int run_priority_heap();
+        int run_bi_tree();
         int run_sorter();
+        int run_func();
 
       private:
         Runner(){}
