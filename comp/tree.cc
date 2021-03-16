@@ -2,25 +2,26 @@
 #include <deque>
 
 namespace nemo {
+
   template <class T>
-  BiTree<T>::BiTree(const std::vector<T> &vec) {
+  void BiTree<T>::Init(const std::vector<T> &vec) {
     if (vec.empty()) { noot = nullptr; return;}
     std::deque<TreeNode<T>*> Q;
     auto it = vec.begin();
     noot = new TreeNode<T>(*it);
     Q.push_back(noot);
     while (true) {
-      TreeNode<T> *p = Q.front();
+      TreeNode<T> *cur = Q.front();
       if (++it != vec.end()) {
-        p->left = new TreeNode<T>(*it);
-        Q.push_back(p->left);
+        cur->left = new TreeNode<T>(*it);
+        Q.push_back(cur->left);
       }
       if (it == vec.end()) {
         break;
       }
       if (++it != vec.end()) {
-        p->right= new TreeNode<T>(*it);
-        Q.push_back(p->right);
+        cur->right = new TreeNode<T>(*it);
+        Q.push_back(cur->right);
       }
       if (it == vec.end()) {
         break;
@@ -31,6 +32,10 @@ namespace nemo {
       }
     }
     Q.clear();
+  }
+  template <class T>
+  BiTree<T>::BiTree(const std::vector<T> &vec) {
+    Init(vec);
   }
 
   template <class T>

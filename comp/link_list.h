@@ -9,6 +9,7 @@ namespace nemo {
    T val;
    Node * next;
    Node() { next = nullptr;}
+   Node(const T &val) { this->val = val; }
    bool operator <(const Node<T> &node) const {
      return val < node.val;
    }
@@ -51,53 +52,42 @@ LinkList<T>::~LinkList() {
   while (head != nullptr) {
     Node<T> *p = head->next;
     delete head;
-    head = nullptr;
     head = p;
   }
 }
 
+// insert to `tail`
 template <class T>
 LinkList<T>::LinkList(const std::vector<T> &vec) {
-  Init(vec);
-  return;
-  if (vec.empty()) { head = nullptr; return;}
-  head = new Node<T>;
-  head->val = vec.at(0);
-  Node<T> *p = head;
-  auto it = vec.begin() + 1;
-  while ( it != vec.end() ) {
-    Node<T> *q = new Node<T>;
-    q->val = *it;
-    ++it;
-    p->next= q;
-    p = q;
+  if (vec.empty()) { head = nullptr; return; }
+  auto it = vec.begin();
+  head = new Node<T>(*it);
+  Node<T> *cur = head;
+  while ( ++it != vec.end() ) {
+    cur->next = new Node<T>(*it);
+    cur = cur->next;
   }
-  p->next = nullptr;
+  cur->next = nullptr;
 }
 
+// insert to `head`
 template <class T>
 Node<T>* LinkList<T>::Init(const std::vector<T> &vec) {
-  head = nullptr;
-  Node<T> * pre = nullptr;
-  for (auto it = vec.begin(); it != vec.end(); ++it) {
-    if (head == nullptr) {
-      head = new Node<T>;
-      head->val = *it;
-      pre = head;
-    } else {
-      Node<T> * cur = new Node<T>;
-      cur->val = *it;
-      pre->next = cur;
-      pre = cur;
-    }
+  if (vec.empty()) { head = nullptr; return; }
+  Node<T>* pre = nullptr;
+  auto it = vec.begin();
+  while (it != vec.end()) {
+    head = new Node<T>(*it);
+    head->next = pre; 
+    pre = head;
+    ++it;
   }
-  pre->next = nullptr;
   return head;
 }
 
 template <class T>
 void LinkList<T>::Display(const Node<T> *head) {
-  if (head == nullptr) { 
+  if (nullptr == head) { 
     std::cout << std::endl; 
     return;
   }
@@ -126,7 +116,7 @@ Node<T>* LinkList<T>::Reverse(Node<T> *head) {
 template <class T>
 Node<T>* LinkList<T>::Reverser(Node<T> *head) {
   if (head == nullptr) return head;
-  if (head->next == nullptr) return head;
+  if (head->next == nullptr) return head; // real head
   Node<T> *hnext = head->next;
   // head -> hnext ; phead -> ... ->hnext
   Node<T> *phead = Reverser(hnext);

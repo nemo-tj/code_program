@@ -29,13 +29,40 @@ namespace nemo {
   }
 
   template <class T>
+  int Func<T>::binaryRS(const std::vector<T> &vec, const T &t, int i, int j) {
+    int ix = -1;
+    if (i > j) return ix;
+    int mid = i + (j - i)/2;
+    if (vec.at(mid) == t) {
+      ix = mid;
+    } else if (vec.at(mid) < t) {
+      ix = binaryRS(vec, t, mid + 1, j);
+    } else {
+      ix = binaryRS(vec, t, i, mid - 1);
+    }
+    return ix;
+  }
+
+  template <class T>
+  int Func<T>::binaryNear(const std::vector<T> &vec, const T &t) {
+    int s = 0, e = vec.size()-1;
+    while (s <= e) {
+      int m = (s + e) / 2;
+      if (t < vec[m]) e = m;
+      else s = m;
+      if (vec[m] <= t && t <= vec[m+1]) break;
+    }
+    return 0;
+  }
+
+  template <class T>
   int Func<T>::binarySearch(const std::vector<T> &vec, const T &t) {
     int s = 0, e = vec.size()-1;
-    while ( s < e) {
+    while (s <= e) {
       int mid = (s + e) / 2;
       if (vec[mid] == t) return mid;
-      if (vec[mid] < t) s = mid +1;
-      else e = mid-1;
+      if (vec[mid] < t) s = mid + 1;
+      else e = mid - 1;
     }
     return -1;
   }
@@ -44,27 +71,27 @@ namespace nemo {
   std::vector<int> Func<T>::boundSearch(const std::vector<T> &vec, const T &t) {
     int s = 0, e = vec.size()-1;
     int mid = 0;
-    while (s < e) {
-      mid = (s + e) / 2;
+    while (s <= e) {
+      mid = s + (e - s) / 2;
       if (vec[mid] == t) break;
       if (vec[mid] < t) s = mid + 1;
-      else e = mid-1;
+      else e = mid - 1;
     }
     // left s : mid
     int ee = mid;
     while (vec[s] != t) {
       if (vec[s+1] == t) { s +=1; break;}
       int m = (s + ee) / 2;
-      if (vec[m] == t) ee = m;
-      else s = m;
+      if (vec[m] != t) s = m;
+      else ee = m;
     }
     // right mid : e
     int ss = mid;
     while (vec[e] != t) {
       if (vec[e-1] == t) {e -= 1; break;}
       int m = (ss + e) / 2;
-      if (vec[m] == t) ss = m;
-      else e = m;
+      if (vec[m] != t) e = m;
+      else ss = m;
     }
     return {s, e};
   }

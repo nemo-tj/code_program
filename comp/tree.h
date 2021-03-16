@@ -5,12 +5,10 @@ namespace nemo {
   template <class T>
   struct TreeNode {
     T val;
-    bool visited;
     TreeNode *left;
     TreeNode *right;
     TreeNode(const T &v) {
       val = v;
-      visited = false;
       left = nullptr;
       right = nullptr;
     }
@@ -26,6 +24,7 @@ namespace nemo {
       BiTree(const std::vector<T> &vec);
       ~BiTree();
     public:
+      void Init(const std::vector<T> &vec);
       void Display(TreeNode<T> *root);
       void DisplayK(TreeNode<T> *root, int k);
       int Level(TreeNode<T> *root);

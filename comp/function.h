@@ -8,6 +8,8 @@ namespace nemo {
       void permute(std::vector<T> &vec, int k, int m); 
       int q(int n, int m); 
       int binarySearch(const std::vector<T> &vec, const T &t);
+      int binaryRS(const std::vector<T>&vec, const T &t, int i, int j);
+      int binaryNear(const std::vector<T> &vec, const T &t);
       std::vector<int> boundSearch(const std::vector<T> &vec, const T &t);
       double myPow(const T &x, int n);
       int sqrt(const int &n);
