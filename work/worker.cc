@@ -115,7 +115,7 @@ int Runner::run_func() {
   std::cout << "-------------" << std::endl;
   std::vector<int> vec2 = {1,2,4,4,4,5,7};
   show_vec(vec2);
-  std::cout << "binary search:" <<  fun.binarySearch(vec2, 5) << std::endl;
+  std::cout << "binary search: 5, ix =" <<  fun.binarySearch(vec2, 5) << std::endl;
   std::vector<int> vc = fun.boundSearch(vec2, 4); 
   std::cout << "bound of 4 is [" << vc.at(0) << "," << vc.at(1) << "]" << std::endl;
   //

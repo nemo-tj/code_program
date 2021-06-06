@@ -110,7 +110,7 @@ namespace nemo {
     int left = 0;
     int right = n;
     while (true) {
-      int mid = (left + right) / 2;
+      int mid = left + (right - left) / 2;
       int val = mid * mid;
       if (val == n) return mid;
       if (val < n) left = mid;

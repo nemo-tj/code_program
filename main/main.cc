@@ -17,9 +17,10 @@ int main(int argc, char* argv[]) {
 
   Runner::GetInstance().run_link_list();
   Runner::GetInstance().run_bi_tree();
+
+  Runner::GetInstance().run_func();
   /*
   Runner::GetInstance().run_sorter();
-  Runner::GetInstance().run_func();
   */
   return 0;
 }
