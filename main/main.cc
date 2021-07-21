@@ -4,9 +4,11 @@
 
 #include "work/worker.h"
 
+
 using namespace nemo::leetcode;
 
 int main(int argc, char* argv[]) {
+  FLAGS_log_dir = "log"; 
   // Initialize Google's logging library.
   google::InitGoogleLogging(argv[0]);
 
@@ -22,5 +24,8 @@ int main(int argc, char* argv[]) {
   /*
   Runner::GetInstance().run_sorter();
   */
+  // Shutdown Google's logging library
+  google::ShutdownGoogleLogging();
+
   return 0;
 }

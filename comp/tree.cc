@@ -35,7 +35,28 @@ namespace nemo {
   }
   template <class T>
   BiTree<T>::BiTree(const std::vector<T> &vec) {
-    Init(vec);
+    if (vec.empty()) {noot = nullptr; return;}
+    auto it = vec.begin();
+    noot = new TreeNode<T>(*it);
+    std::deque<TreeNode<T>*> Q;
+    Q.push_back(noot);
+    while (true) {
+      TreeNode<T> *cur = Q.front();
+      if (++it != vec.end()) {
+        cur->left = new TreeNode<T>(*it);
+        Q.push_back(cur->left);
+      } else {
+        break;
+      }
+      if (++it != vec.end()) {
+        cur->right = new TreeNode<T>(*it);
+        Q.push_back(cur->right);
+      } else {
+        break;
+      }
+      if (!Q.empty()) { Q.pop_front(); }
+    }
+    while (!Q.empty()) Q.pop_front();
   }
 
   template <class T>
@@ -108,9 +129,8 @@ namespace nemo {
         Q.push_back(cur);
         cur = cur->left;
       }
-      cur = Q.back();
+      cur = Q.back()->right;
       Q.pop_back();
-      cur = cur->right;
       if (Q.empty() && cur == nullptr) {
         break;
       }
@@ -142,8 +162,8 @@ namespace nemo {
       } 
       cur = Q.back();
       R.push_back(cur->val);
-      Q.pop_back();
       cur = cur->right;
+      Q.pop_back();
       if (Q.empty() && cur == nullptr) {
         break;
       }
