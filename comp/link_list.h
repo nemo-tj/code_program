@@ -75,12 +75,12 @@ LinkList<T>::LinkList(const std::vector<T> &vec) {
 template <class T>
 Node<T>* LinkList<T>::Init(const std::vector<T> &vec) {
   if (vec.empty()) { head = nullptr; return; }
-  Node<T>* pre = nullptr;
+  head = nullptr;
   auto it = vec.begin();
   while (it != vec.end()) {
-    head = new Node<T>(*it);
-    head->next = pre; 
-    pre = head;
+    Node<T> *post = new Node<T>(*it);
+    post->next = head;
+    head = post;
     ++it;
   }
   return head;

@@ -12,4 +12,4 @@ export GLOG_stderrthreshold=1
 export GLOG_v=3
 export GLOG_max_log_size=1
 # ./bazel-bin/main/run_bin
-./bazel-bin/main/run_bin  --logtostderr=1
+./bazel-bin/main/run_bin  --alsologtostderr=1
