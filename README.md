@@ -1,2 +1,0 @@
-# CodePractise
-practicse coding skill
