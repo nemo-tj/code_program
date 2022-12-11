@@ -168,7 +168,7 @@ const char descriptor_table_protodef_route_5fguide_2eproto[] PROTOBUF_SECTION_VA
   "\001 \001(\0132\021.routeguide.Point\022\017\n\007message\030\002 \001("
   "\t\"b\n\014RouteSummary\022\023\n\013point_count\030\001 \001(\005\022\025"
   "\n\rfeature_count\030\002 \001(\005\022\020\n\010distance\030\003 \001(\005\022"
-  "\024\n\014elapsed_time\030\004 \001(\0052\205\002\n\nRouteGuide\0226\n\n"
+  "\024\n\014elapsed_time\030\004 \001(\0052\3.5\002\n\nRouteGuide\0226\n\n"
   "GetFeature\022\021.routeguide.Point\032\023.routegui"
   "de.Feature\"\000\022>\n\014ListFeatures\022\025.routeguid"
   "e.Rectangle\032\023.routeguide.Feature\"\0000\001\022>\n\013"
