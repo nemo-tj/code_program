@@ -1,0 +1,11 @@
+syntax= 'proto3';
+package xy;
+
+message Person {
+  string name = 1;
+  int32 age = 2;
+}
+
+message AddressBook {
+  repeated Person person = 1;
+}
