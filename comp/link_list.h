@@ -74,7 +74,7 @@ LinkList<T>::LinkList(const std::vector<T> &vec) {
 // insert to `head`
 template <class T>
 Node<T>* LinkList<T>::Init(const std::vector<T> &vec) {
-  if (vec.empty()) { head = nullptr; return; }
+  if (vec.empty()) { head = nullptr; return head; }
   head = nullptr;
   auto it = vec.begin();
   while (it != vec.end()) {
