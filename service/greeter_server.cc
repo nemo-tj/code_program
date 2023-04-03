@@ -56,7 +56,7 @@ class GreeterServiceImpl final : public Greeter::Service {
 };
 
 void RunServer() {
-  std::string server_address("192.168.1.88:50051");
+  std::string server_address("192.168.1.13:50051");
   GreeterServiceImpl service;
 
   grpc::EnableDefaultHealthCheckService(true);

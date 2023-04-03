@@ -12,6 +12,9 @@ namespace nemo {
         this->val = val;
       }
       inline operator T() { return val; }
+      inline bool operator< (const Node<T> &node) const {
+        return this->val < node.val;
+      }
     };
 
   template <typename T>

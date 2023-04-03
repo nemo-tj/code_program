@@ -175,19 +175,17 @@ namespace nemo {
       if (nullptr == rt) return;
       std::deque<BTreeNode<T> *> V;
       V.push_back(rt);
-      std::cout << std::endl;
       while (true) {
-        std::deque<BTreeNode<T> *> Q;
-        while (!V.empty()) {
+        int sz = V.size();
+        for (int i = 0; i < sz; ++i) {
           BTreeNode<T> *cur = V.front();
           std::cout << *cur << " ";
-          if (nullptr != cur->left)  Q.push_back(cur->left);
-          if (nullptr != cur->right) Q.push_back(cur->right);
+          if (nullptr != cur->left)  V.push_back(cur->left);
+          if (nullptr != cur->right) V.push_back(cur->right);
           V.pop_front();
         }
         std::cout << std::endl;
-        if (Q.empty()) break;
-        V = Q;
+        if (V.empty()) break;
       }
       std::cout << std::endl;
     }

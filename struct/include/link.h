@@ -17,6 +17,9 @@ namespace nemo {
       inline LinkNode<T> *getHead() { return pHead; }
       LinkNode<T>* reverse(LinkNode<T> *head);
       LinkNode<T>* reverseR(LinkNode<T> *head);
+      LinkNode<T>* pairRev(LinkNode<T> *head);
+      LinkNode<T>* pairReve(LinkNode<T> *head);
+      LinkNode<T>* lastKth(LinkNode<T> *head, int k);
       
     private:
       LinkNode<T> *pHead;

@@ -107,7 +107,8 @@ int main(int argc, char** argv) {
       return 0;
     }
   } else {
-    target_str = "192.168.1.88:50051";
+    target_str = "localhost:50051";
+    //target_str = "192.168.1.88:50051";
   }
   GreeterClient greeter(
       grpc::CreateChannel(target_str, grpc::InsecureChannelCredentials()));

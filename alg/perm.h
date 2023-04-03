@@ -9,7 +9,6 @@ void perm(std::string &str, int k) {
     return;
   }
   for (int i = k; i < str.size(); ++i) {
-    if (i != k && str[i-1] == str[i]) continue; 
     swap(str, k, i);
     perm(str, k + 1);
     swap(str, k, i);

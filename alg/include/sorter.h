@@ -4,13 +4,15 @@
 #include <iostream>
 #include <pthread.h>
 
+
 namespace nemo {
 
   enum SORTER {
     BUB,
-    SELECTION,
     INSERT,
-    QUICK
+    HEAP,
+    SELECTION,
+    QUICK,
   };
   
   template <class T>
@@ -83,17 +85,50 @@ namespace nemo {
     }
   
 
+  // HeapSorter:
+
+  template <class T>
+    class HeapSorter : public Sorter<T> {
+      private:
+        HeapSorter() { std::cout << "HEAP" << std::endl; };
+        HeapSorter(const HeapSorter<T> &sorter) {};
+        HeapSorter& operator=(const HeapSorter<T> &sorter) {};
+      public:
+        ~HeapSorter() { std::cout << "HEAP destroying.." << std::endl; };
+      private:
+        static Sorter<T>* sorter;
+      public:
+        static Sorter<T>* getInstance();
+        void sort(std::vector<T> &vec, int start, int end);
+      private:
+        void sink(std::vector<T> &vec, int s, int k, int N);
+        void exch(std::vector<T> &vec, int i, int j);
+        bool less(T &a, T &b);
+      private:
+        void swin(std::vector<T> &vec, int s, int k);
+    };
+
+  template <class T>
+    Sorter<T>* HeapSorter<T>::sorter = new HeapSorter<T>();
+
+  template <class T>
+    Sorter<T>* HeapSorter<T>::getInstance() { return sorter; }
+
+
   // InsertSorter : 
 
-  template <class T> class InsertSorter;
 
   template <class T>
     class InsertSorterFactory {
+      public:
+        ~InsertSorterFactory() { if (nullptr != sorter) delete sorter; }
       private:
         static Sorter<T> *sorter;
       public:
         static Sorter<T> *getInstance();
     };
+
+  template <class T> class InsertSorter;
 
   template <class T>
     Sorter<T>* InsertSorterFactory<T>::sorter = new InsertSorter<T>();
@@ -106,6 +141,7 @@ namespace nemo {
     class InsertSorter : public Sorter<T> {
       public:
         void sort(std::vector<T> &vec, int start, int end);
+        void sortV1(std::vector<T> &vec, int start, int end);
         friend class InsertSorterFactory<T>;
       private:
         InsertSorter() { std::cout << "INSERT" << std::endl; }
@@ -137,7 +173,9 @@ namespace nemo {
         Sorter<T> *instance = nullptr;
     };
 
+  // Declare class
   template <class T> class QuickSorter;
+
   template <class T>
     Sorter<T>* QuickSorterFactory<T>::getInstance() {
       if (nullptr == instance) {
@@ -154,6 +192,7 @@ namespace nemo {
     class QuickSorter : public Sorter<T> {
       public:
         void sort(std::vector<T> &vec, int start, int end);
+        void sortV1(std::vector<T> &vec, int start, int end);
         friend class QuickSorterFactory<T>;
         /*
       private:
@@ -176,6 +215,8 @@ namespace nemo {
       public:
         Sorter<T> *create(const SORTER &st) {
           switch (st) {
+            case HEAP:
+              return HeapSorter<T>::getInstance();
             case BUB:
               return BubSorter<T>::getInstance();
             case SELECTION:

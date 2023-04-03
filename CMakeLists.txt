@@ -8,8 +8,8 @@ add_subdirectory(struct)
 add_subdirectory(util)
 add_subdirectory(alg)
 add_subdirectory(common)
+add_subdirectory(worker)
 
 # Service
 add_subdirectory(service)
 add_subdirectory(pb)
-# add_subdirectory(worker)

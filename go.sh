@@ -1,10 +1,11 @@
 set -x
-cd pb
-sh gen_proto_src.sh
-cd -
+# cd pb
+# sh gen_proto_src.sh
+# cd -
 mkdir -p build
 cd build
 cmake ..
+rm -rf ./server/main_server
 make -j 4
 
 echo "running ............................"

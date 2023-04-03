@@ -70,6 +70,56 @@ namespace nemo {
       std::cout << std::endl;
     }
 
+  template <class T>
+    LinkNode<T>* Link<T>::lastKth(LinkNode<T> *head, int k) {
+      LinkNode<T> *fast = head;
+      LinkNode<T> *slow = head;
+      while (k > 0 && fast != nullptr) {
+        fast = fast->next;
+        --k;
+      }
+      while (fast != nullptr) {
+        slow = slow->next;
+        fast = fast->next;
+      }
+      if (k > 0) return nullptr; // link length is shorter than `k`
+      return slow;
+    }
+
+  template <class T>
+    LinkNode<T>* Link<T>::pairRev(LinkNode<T> *head) {
+      if (nullptr == head) return head;
+      if (nullptr == head->next) return head;
+      LinkNode<T> *p1 = head, *p2 = head->next;
+      LinkNode<T> *p = p2->next;
+      p2->next = p1;
+      p1->next = pairRev(p);
+      pHead = p2;
+      return p2;
+    }
+
+  template <class T>
+    LinkNode<T>* Link<T>::pairReve(LinkNode<T> *head) {
+      if (nullptr == head) return head;
+      if (nullptr == head->next) return head;
+      LinkNode<T>* p1 = head; 
+      LinkNode<T>* p2 = p1->next;
+      LinkNode<T>* p3 = p2->next;
+      LinkNode<T>* phead = p2;
+      p1->next = p3;
+      p2->next = p1;
+      while (nullptr != p3 && nullptr != p3->next) {
+        LinkNode<T> *pre = p1;
+        p1 = p3;
+        p2 = p1->next;
+        p3 = p2->next;
+        p1->next = p3;
+        p2->next = p1;
+        pre->next = p2;
+      }
+      pHead = phead;
+      return phead;
+    }
 
   // ===============
   // instantialize: explicitly declare
