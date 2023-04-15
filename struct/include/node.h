@@ -32,13 +32,13 @@ namespace nemo {
     };
 
   template <typename T>
-    struct BTreeNode : public Node<T> {
-      BTreeNode<T> *left;
-      BTreeNode<T> *right;
+    struct BTNode : public Node<T> {
+      BTNode<T> *left;
+      BTNode<T> *right;
 
-      BTreeNode(const T &v): Node<T>(v) {}
+      BTNode(const T &v): Node<T>(v) {}
 
-      BTreeNode(const BTreeNode<T> *btn) {
+      BTNode(const BTNode<T> *btn) {
         this->val = btn->val;
       }
 

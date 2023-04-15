@@ -11,19 +11,19 @@ namespace nemo {
   template <class T>
     BTree<T>::BTree(const std::vector<T> &vec) {
       if (vec.empty()) return;
-      std::deque<BTreeNode<T>*> Q;
+      std::deque<BTNode<T>*> Q;
       uint32 x = 0;
-      root = new BTreeNode<T>(vec[x]);
+      root = new BTNode<T>(vec[x]);
       Q.push_back(root);
       x += 1;
       while (true) {
-        BTreeNode<T> *cur = Q.front();
+        BTNode<T> *cur = Q.front();
         if (x < vec.size()) {
-          cur->left = new BTreeNode<T>(vec[x++]);
+          cur->left = new BTNode<T>(vec[x++]);
           Q.push_back(cur->left);
         }
         if (x < vec.size()) {
-          cur->right = new BTreeNode<T>(vec[x++]);
+          cur->right = new BTNode<T>(vec[x++]);
           Q.push_back(cur->right);
         }
         Q.pop_front();
@@ -36,10 +36,10 @@ namespace nemo {
   template <class T>
     BTree<T>::~BTree() {
       if (nullptr == root) return;
-      std::deque<BTreeNode<T> *> Q;
+      std::deque<BTNode<T> *> Q;
       Q.push_back(root);
       while (!Q.empty()) {
-        BTreeNode<T> *cur = Q.front();
+        BTNode<T> *cur = Q.front();
         if (nullptr != cur->left) Q.push_back(cur->left);
         if (nullptr != cur->right)Q.push_back(cur->right);
         Q.pop_front();
@@ -48,7 +48,7 @@ namespace nemo {
     }
   
   template <class T>
-    void BTree<T>::postVisit(BTreeNode<T> *rt) {
+    void BTree<T>::postVisit(BTNode<T> *rt) {
       if (nullptr == rt) return;
       postVisit(rt->left);
       postVisit(rt->right);
@@ -56,7 +56,7 @@ namespace nemo {
     }
 
   template <class T>
-    void BTree<T>::midVisit(BTreeNode<T> *rt) {
+    void BTree<T>::midVisit(BTNode<T> *rt) {
       if (nullptr == rt) return;
       midVisit(rt->left);
       std::cout << *rt << " ";
@@ -64,7 +64,7 @@ namespace nemo {
     }
 
   template <class T>
-    void BTree<T>::preVisit(BTreeNode<T> *rt) {
+    void BTree<T>::preVisit(BTNode<T> *rt) {
       if (nullptr == rt) return;
       std::cout << *rt << " ";
       preVisit(rt->left);
@@ -72,11 +72,11 @@ namespace nemo {
     }
 
   template <class T>
-    void BTree<T>::postV1(BTreeNode<T> *rt) {
+    void BTree<T>::postV1(BTNode<T> *rt) {
       if (nullptr == rt) return;
-      std::stack<BTreeNode<T> *> ST;
-      std::stack<BTreeNode<T> *> R;
-      BTreeNode<T> *cur = rt;
+      std::stack<BTNode<T> *> ST;
+      std::stack<BTNode<T> *> R;
+      BTNode<T> *cur = rt;
       while (true) {
         while (nullptr != cur) {
           ST.push(cur);
@@ -97,11 +97,11 @@ namespace nemo {
     }
 
   template <class T>
-    void BTree<T>::postV(BTreeNode<T> *rt) {
+    void BTree<T>::postV(BTNode<T> *rt) {
       if (nullptr == rt) return;
-      std::deque<BTreeNode<T> *> Q;
-      BTreeNode<T> *last = nullptr;
-      BTreeNode<T> *cur = rt;
+      std::deque<BTNode<T> *> Q;
+      BTNode<T> *last = nullptr;
+      BTNode<T> *cur = rt;
       while (true) {
         while (nullptr != cur) {
           Q.push_back(cur);
@@ -124,17 +124,17 @@ namespace nemo {
     }
 
   template <class T>
-    void BTree<T>::midV(BTreeNode<T> *rt) {
+    void BTree<T>::midV(BTNode<T> *rt) {
       if (nullptr == rt) return;
-      BTreeNode<T> *cur = rt;
-      std::deque<BTreeNode<T> *> Q;
+      BTNode<T> *cur = rt;
+      std::deque<BTNode<T> *> Q;
       while (true) {
         while (nullptr != cur) {
           Q.push_back(cur);
           cur = cur->left;
         }
         if (!Q.empty()) {
-          BTreeNode<T> *t = Q.back();
+          BTNode<T> *t = Q.back();
           std::cout << *t << " ";
           Q.pop_back();
           cur = t->right;
@@ -147,10 +147,10 @@ namespace nemo {
     }
 
   template <class T>
-    void BTree<T>::preV(BTreeNode<T> *rt) {
+    void BTree<T>::preV(BTNode<T> *rt) {
       if (nullptr == rt) return;
-      BTreeNode<T> *cur = rt;
-      std::deque<BTreeNode<T> *> ST;
+      BTNode<T> *cur = rt;
+      std::deque<BTNode<T> *> ST;
       while (true) {
         while (nullptr != cur) {
           std::cout << *cur << " ";
@@ -158,7 +158,7 @@ namespace nemo {
           cur = cur->left;
         }
         if (!ST.empty()) {
-          BTreeNode<T> *t = ST.back();
+          BTNode<T> *t = ST.back();
           cur = t->right;
           ST.pop_back();
         }
@@ -171,14 +171,14 @@ namespace nemo {
 
 
   template <class T>
-    void BTree<T>::display(BTreeNode<T> *rt) {
+    void BTree<T>::display(BTNode<T> *rt) {
       if (nullptr == rt) return;
-      std::deque<BTreeNode<T> *> V;
+      std::deque<BTNode<T> *> V;
       V.push_back(rt);
       while (true) {
         int sz = V.size();
         for (int i = 0; i < sz; ++i) {
-          BTreeNode<T> *cur = V.front();
+          BTNode<T> *cur = V.front();
           std::cout << *cur << " ";
           if (nullptr != cur->left)  V.push_back(cur->left);
           if (nullptr != cur->right) V.push_back(cur->right);
@@ -191,17 +191,33 @@ namespace nemo {
     }
 
   template <class T>
-    int BTree<T>::depth(BTreeNode<T> *rt) {
+    int BTree<T>::depth(BTNode<T> *rt) {
       if (nullptr == rt) return 0;
       return 1 + std::max(depth(rt->left), depth(rt->right));
     }
 
   template <class T>
-    void BTree<T>::displayK(BTreeNode<T> *rt, int k) {
+    void BTree<T>::displayK(BTNode<T> *rt, int k) {
       if (nullptr == rt) return;
       if (0 == k) std::cout << *rt << " ";
       displayK(rt->left, k-1);
       displayK(rt->right, k-1);
+    }
+
+  template <class T>
+    int BTree<T>::sumNode(BTNode<T> *rt) {
+      if (nullptr == rt) return 0;
+      return rt->val + sumNode(rt->left) + sumNode(rt->right);
+    }
+
+  template <class T>
+    void BTree<T>::mirror(BTNode<T> *rt) {
+      if (nullptr == rt) return;
+      BTNode<T> *cur = rt->left;
+      rt->left = rt->right;
+      rt->right = cur;
+      mirror(rt->left);
+      mirror(rt->right);
     }
 
 

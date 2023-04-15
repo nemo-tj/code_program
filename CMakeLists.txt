@@ -11,5 +11,5 @@ add_subdirectory(common)
 add_subdirectory(worker)
 
 # Service
-add_subdirectory(service)
+# add_subdirectory(service)
 add_subdirectory(pb)

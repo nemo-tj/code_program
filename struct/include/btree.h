@@ -13,23 +13,25 @@ namespace nemo {
         ~BTree();
 
       public:
-        void display(BTreeNode<T> *rt);
-        void preVisit(BTreeNode<T> *rt);
-        void preV(BTreeNode<T> *rt);
-        void midVisit(BTreeNode<T> *rt);
-        void midV(BTreeNode<T> *rt);
-        void postVisit(BTreeNode<T> *rt);
-        void postV(BTreeNode<T> *rt);
-        void postV1(BTreeNode<T> *rt);
+        void display(BTNode<T> *rt);
+        void preVisit(BTNode<T> *rt);
+        void preV(BTNode<T> *rt);
+        void midVisit(BTNode<T> *rt);
+        void midV(BTNode<T> *rt);
+        void postVisit(BTNode<T> *rt);
+        void postV(BTNode<T> *rt);
+        void postV1(BTNode<T> *rt);
 
       public:
-        int depth(BTreeNode<T> *rt);
-        void displayK(BTreeNode<T> *rt, int k);
+        void mirror(BTNode<T> *rt);
+        int depth(BTNode<T> *rt);
+        void displayK(BTNode<T> *rt, int k);
+        int sumNode(BTNode<T> *rt);
 
       public:
-        inline BTreeNode<T> *getRoot() { return root; }
+        inline BTNode<T> *getRoot() { return root; }
       private:
-        BTreeNode<T> *root;
+        BTNode<T> *root;
     };
 
 } // end nemo namespace
