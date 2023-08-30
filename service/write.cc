@@ -2,7 +2,7 @@
 #include <fstream>
 #include <string>
 
-#include "address_book.pb.h"
+#include "proto/address_book.pb.h"
 
 using namespace std;
 

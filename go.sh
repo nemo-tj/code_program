@@ -1,7 +1,7 @@
 set -x
-# cd pb
-# sh gen_proto_src.sh
-# cd -
+sh grpctool.sh
+echo "end generate proto src............"
+echo "---------------------------------"
 mkdir -p build
 cd build
 cmake ..
