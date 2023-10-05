@@ -11,4 +11,5 @@ target_include_directories(${PROJECT_NAME}
 		PUBLIC	
 			${PROJECT_SOURCE_DIR}
 )
+message(STATUS "PTOTO_GEN_SRC dir : ${PROJECT_SOURCE_DIR}")
 

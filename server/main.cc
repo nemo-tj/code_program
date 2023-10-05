@@ -9,6 +9,8 @@
 #include "util.h"
 #include "node.h"
 
+#include <glog/logging.h>
+
 using namespace nemo;
 
 void test_perm() {
@@ -18,11 +20,15 @@ void test_perm() {
 
 int main(int argc, char *argv[])
 {
+	FLAGS_log_dir = "log";
+	// initialize google's logging library
+	google::InitGoogleLogging(argv[0]);
   // test_perm();
   test_struct();
   // test_link();
   // test_alg();
   // test_jump();
   // test_pq();
+	LOG(INFO) << "test main " << "is ok";
   return 0;
 }
