@@ -19,13 +19,13 @@ void test_perm() {
 }
 
 int main(int argc, char *argv[])
-{
-	FLAGS_log_dir = "log";
+{	
+	FLAGS_log_dir = "/home/nemo/project/service/code_program/log/";
 	// initialize google's logging library
 	google::InitGoogleLogging(argv[0]);
   // test_perm();
-  test_struct();
-  // test_link();
+  // test_struct();
+ 	test_link();
   // test_alg();
   // test_jump();
   // test_pq();

@@ -7,47 +7,55 @@ namespace nemo {
   
   template <class T>
     Link<T>::Link() {
-      std::cout << "Creating Link default " << std::endl;
+      LOG(INFO) << "Creating Link default ";
       pHead = nullptr;
     }
 
   template <class T>
     Link<T>::~Link() {
-      std::cout << "Destroy Link: ";
+			std::string LOG_STR = "Destroy Link: ";
       while (nullptr != pHead) {
         LinkNode<T> *cur = pHead;
         pHead = pHead->next;
-        std::cout << *cur << " " ;
+				LOG_STR += to_string(*cur) + " ";
         delete cur;
       }
-      std::cout << std::endl;
+			LOG(INFO) << LOG_STR;
     }
 
   template <class T>
     Link<T>::Link(const std::vector<T> &vec) {
       if (vec.empty()) return;
+			std::string log_str = "Creating Link default ";
+			log_str += to_string(vec.at(0)) + " ";
       pHead = new LinkNode<T>(vec.at(0));
       LinkNode<T> *cur = pHead;
       for (uint32 ix = 1; ix < vec.size(); ++ix) {
+				log_str += to_string(vec[ix]) + " ";
         cur->next = new LinkNode<T>(vec[ix]);
         cur = cur->next;
       }
+			cur->next = nullptr;
+			LOG(INFO) << log_str;
     }
 
   template <class T>
     LinkNode<T>* Link<T>::reverseR(LinkNode<T> *head) {
-      if (nullptr == head) return nullptr;
-      if (nullptr == head->next) return head;
+			LOG(INFO) << "reverseR";
+      if (nullptr == head || nullptr == head->next) return head;
       LinkNode<T> *pre = head->next;
       LinkNode<T> *r = this->reverseR(head->next);
       pre->next = head;
       head->next = nullptr;
+			// 
       pHead = r;
       return r;
     }
   
   template <class T>
     LinkNode<T>* Link<T>::reverse(LinkNode<T> *head) {
+			LOG(INFO) << "reverse";
+      if (nullptr == head || nullptr == head->next) return head;
       LinkNode<T> *cur = nullptr;
       while (nullptr != head) {
         LinkNode<T> *t = head;
@@ -61,17 +69,18 @@ namespace nemo {
 
   template <class T>
     void Link<T>::display(LinkNode<T> *head) {
-      std::cout << "link: ";
+			std::string LOG_STR = "link: ";
       if (nullptr == head) return;
       while (nullptr != head) {
-        std::cout << *head << " ";
+        LOG_STR += to_string(*head) + " ";
         head = head->next;
       }
-      std::cout << std::endl;
+			LOG(INFO) << LOG_STR;
     }
 
   template <class T>
     LinkNode<T>* Link<T>::lastKth(LinkNode<T> *head, int k) {
+			LOG(INFO) << "last k th";
       LinkNode<T> *fast = head;
       LinkNode<T> *slow = head;
       while (k > 0 && fast != nullptr) {
@@ -88,6 +97,7 @@ namespace nemo {
 
   template <class T>
     LinkNode<T>* Link<T>::pairRev(LinkNode<T> *head) {
+			LOG(INFO) << "pairRev";
       if (nullptr == head) return head;
       if (nullptr == head->next) return head;
       LinkNode<T> *p1 = head, *p2 = head->next;
@@ -100,6 +110,7 @@ namespace nemo {
 
   template <class T>
     LinkNode<T>* Link<T>::pairReve(LinkNode<T> *head) {
+			LOG(INFO) << "pairReve";
       if (nullptr == head) return head;
       if (nullptr == head->next) return head;
       LinkNode<T>* p1 = head; 

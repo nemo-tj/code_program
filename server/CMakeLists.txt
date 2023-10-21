@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
-project(main_server)
+project(main_server VERSION 1.0)
 
 set(MAIN_SRC main.cc)
 

@@ -7,6 +7,7 @@
 #include <map>
 
 #include <iostream>
+#include <sstream>
 
 namespace nemo {
 
@@ -16,6 +17,14 @@ namespace nemo {
   typedef unsigned long uint32;
 
   typedef unsigned int uint;
+
+	template <class T>
+		std::string to_string(T val) {
+			std::stringstream ss;
+			ss.str(" ");
+			ss << val;
+			return ss.str();
+		}
   
 #define LINE (std::cout << "\n---------------------" << std::endl);
 #define INFO(x)(std::cout << "\n===== " << x << " =====" << std::endl);

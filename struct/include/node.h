@@ -1,5 +1,8 @@
 #pragma once
 
+#include <glog/logging.h>
+
+
 namespace nemo {
   template <typename T>
     struct Node {

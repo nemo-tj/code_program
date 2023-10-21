@@ -11,7 +11,8 @@ make -j 4
 echo "running ............................"
 echo ""
 
-./server/main_server --log_dir=./log/
+echo `pwd`
+./server/main_server --log_dir=../log/
 
 echo ""
 echo "done    ............................"
