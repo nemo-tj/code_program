@@ -25,8 +25,8 @@ int main(int argc, char *argv[])
 	google::InitGoogleLogging(argv[0]);
   // test_perm();
   // test_struct();
- 	test_link();
-  // test_alg();
+ 	// test_link();
+  test_alg();
   // test_jump();
   // test_pq();
 	LOG(INFO) << "test main " << "is ok";

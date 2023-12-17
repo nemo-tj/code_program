@@ -1,5 +1,5 @@
 set -x
-sh grpctool.sh
+# sh grpctool.sh
 echo "end generate proto src............"
 echo "---------------------------------"
 mkdir -p build
